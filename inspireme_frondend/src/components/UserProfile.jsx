@@ -6,8 +6,9 @@ import { userCreatedPinsQuery, userQuery, userSavedPinsQuery } from '../utils/da
 import { client } from '../client';
 import MasonryLayout from './MasonryLayout';
 import Spinner from './Spinner';
+import axios from 'axios';
 
-const randomImage = 'https://source.unsplash.com/1600x900/?movie'
+
 const activeBtnStyles = 'bg-red-500 text-white font-bold p-2 rounded-full w-20 outline-none'
 const notActiveBtnStyles = 'bg-primary mr-4 text-black font-bold p-2 rounded-full w-20 outline-none'
 
@@ -17,9 +18,28 @@ const UserProfile = () => {
   const [pins, setPins] = useState(null);
   const [text, setText] = useState('Created');
   const [activeBtn, setActiveBtn] = useState('created');
+  const [randomImage, setRandomImage] = useState('');
 
-  const navigate = useNavigate();
+
+
+  // const navigate = useNavigate();
   const { userId } = useParams();
+
+  useEffect(() => {
+    fetchRandomPhoto();
+  }, []);
+
+  const fetchRandomPhoto = async () => {
+    try {
+      const response = await axios.get('https://api.unsplash.com/photos/random/?client_id=DSK4KmJ9qcsx-aRNoEgUsSIsHvCJNBRlF_qQ4UuCX74').then((data) => {
+        console.log(data.data.urls.regular);
+        setRandomImage(data.data.urls.regular)
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 
   useEffect(() => {
     const query = userQuery(userId);
@@ -56,11 +76,11 @@ const UserProfile = () => {
 
 
 
-  const Logout = () => {
-    localStorage.clear
+  // const Logout = () => {
+  //   localStorage.clear
 
-    navigate('/login')
-  }
+  //   navigate('/login')
+  // }
 
   if (!user) {
     return <Spinner message='Loading profile...' />
@@ -86,30 +106,6 @@ const UserProfile = () => {
             <h1 className='font-bold text-3xl text-center mt-3'>
               {user.userName}
             </h1>
-            {/* <GoogleOAuthProvider clientId="696042889856-qc8njqfkn7nnms9247korq31erlq1fbg.apps.googleusercontent.com">
-
-              <div className='absolute top-0 z-1 right-0 p-2'>
-                <GoogleLogout
-                  render={(renderProps) => (
-                    <button
-                      type='button'
-                      className='ng-white p-2 rounded-full cursor-pointer outline-none shadow-md'
-                      onClick={renderProps.onClick}
-                      disabled={renderProps.disabled}
-
-                    >
-                      <AiOutlineLogout color='red' fontize={21} />
-                    </button>
-                  )}
-
-                  onLogoutSuccess={Logout}
-                  onError={response => console.log(response)}
-                  cookiePolicy='single_host_origin'
-
-
-                />
-              </div>
-            </GoogleOAuthProvider> */}
 
           </div>
           <div className='text-center mb-7'>
