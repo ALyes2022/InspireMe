@@ -1,8 +1,5 @@
 export const categories = [
-  {
-    name: 'Select movie category',
-    image: '',
-  },
+
   {
     name: 'horror',
     image: 'https://hips.hearstapps.com/hmg-prod/images/christmas-horror-movies-red-snow-1664485521.jpeg',
@@ -81,7 +78,7 @@ export const searchQuery = (searchTerm) => {
       _id,
       userName,
       image
-    }
+    },
     save[] {
       _key,
       postedBy -> {

@@ -3,25 +3,15 @@ import { NavLink, Link } from "react-router-dom"; //https://reactrouter.com/en/m
 import { RiHomeFill } from "react-icons/ri";
 import { IoIosArrowForward } from "react-icons/io";
 import logoInspireMe from '../assets/logoInspireMe.png'
-
+import { categories } from '../utils/data'
 const isNotActiveStyle = 'flex items-center px-5 gap-3 text-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
 const isActiveStyle = 'flex items-center px-5 gap-3 text-3 font-extrabold border-r-2 border-black transition-all duration-200 ease-in-out capitalize'
-const categories = [
-  { name: 'Horror' },
-  { name: 'Drama' },
-  { name: 'Comedy' },
-  { name: 'Action' },
-  { name: 'Romantic' },
-  { name: 'True Stories' },
-  { name: 'documentary' },
-  { name: 'TV Shows' },
-  { name: 'Other' }
-]
+
 
 const SideBar = ({ user, closeToggle }) => {
 
   const handleCloseSideBar = () => {
-    if (closeToggle !== 'undefined') {
+    if (closeToggle) {
       closeToggle(false)
     }
 
@@ -57,6 +47,11 @@ const SideBar = ({ user, closeToggle }) => {
               onClick={handleCloseSideBar}
               key={category.name}
             >
+              <img
+                src={category.image}
+                className='w-8 h-8 rounded-full shadow-sm'
+                alt="category"
+              />
               {category.name}
             </NavLink>
           ))}

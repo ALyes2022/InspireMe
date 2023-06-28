@@ -46,6 +46,7 @@ const Feed = () => {
   }, [categoryId])
 
   if (loading) return <Spinner message='we are adding new ideas to your feed!' />
+  if (!pins?.length) return <h2 className='flex justify-center items-center h-full mt-20'> No Posts available </h2>
 
   return (
     <div>
