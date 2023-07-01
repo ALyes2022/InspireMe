@@ -6,7 +6,7 @@ import backgroundVid from '../assets/backgroundVid.mp4';
 import logoInspireMe from '../assets/logoInspireMe.png';
 import jwt_decode from 'jwt-decode';
 import { client } from '../client';
-import clientId from '../variables/api_variables';
+
 
 
 const Login = () => {
@@ -17,6 +17,8 @@ const Login = () => {
     const responseDecoded = jwt_decode(response.credential);
     localStorage.setItem('user', JSON.stringify(responseDecoded));
     const { name, sub, picture } = responseDecoded;
+    // console.log(response);
+    // console.log(response.credential);
 
     const doc = {
       _id: sub,
@@ -28,6 +30,7 @@ const Login = () => {
     client.createIfNotExists(doc) //https://www.sanity.io/docs/http-mutations
       .then(() => {
         navigate('/', { replace: true })
+        //https://reach.tech/router/api/navigate
 
       })
 
@@ -60,6 +63,8 @@ const Login = () => {
 
             <div className="shadow-2xl">
               <GoogleLogin
+                //https://www.npmjs.com/package/@react-oauth/google
+                //https://www.npmjs.com/package/react-google-login
                 render={(renderProps) => (
                   <button
                     type="button"

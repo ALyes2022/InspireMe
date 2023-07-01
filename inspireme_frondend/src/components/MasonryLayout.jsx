@@ -6,8 +6,8 @@ const breakpointColumnsObj = {
   //https://www.npmjs.com/package/react-masonry-css
   default: 4,
   3000: 6, //3000 px of width show 6 columns
-  2000: 5, //2000 px of width show 6 columns
-  1200: 3, //1200 px of width show 6 columns
+  2000: 5, //2000 px of width show 5 columns
+  1200: 3, //1200 px of width show 3 columns
   1000: 2, //1000 px of width show 2 columns
   500: 1, //500 px of width show 1 columns
 };
