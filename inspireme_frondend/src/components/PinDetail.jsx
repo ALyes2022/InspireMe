@@ -23,8 +23,8 @@ const PinDetail = ({ user }) => {
       setAddingComment(true);
       client
         .patch(pinId)
-        .setIfMissing({ comments: [] })
-        .insert('after', 'comments[-1]', [{
+        .setIfMissing({ comments: [] }) //// Ensure that the `reviews` arrays exists before attempting to add items to it
+        .insert('after', 'comments[-1]', [{ //// Add the items after the last item in the array (append) https://www.sanity.io/docs/js-client#patch-update-a-document
           comment,
           _key: uuidv4(),
           postedBy: {

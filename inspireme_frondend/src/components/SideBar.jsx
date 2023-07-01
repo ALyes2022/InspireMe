@@ -40,7 +40,7 @@ const SideBar = ({ user, closeToggle }) => {
           </NavLink>
           <h3 className='mt-3 px-5 text-base 2xl:text-xl'>Discover categories</h3>
 
-          {categories.slice(0, categories.length - 1).map((category) => (
+          {categories.slice(0, categories.length).map((category) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) => isActive ? isActiveStyle : isNotActiveStyle}

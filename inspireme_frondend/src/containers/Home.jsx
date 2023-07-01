@@ -24,9 +24,9 @@ const Home = () => {
     client.fetch(query)
       .then((data) => {
         setUser(data[0])
-        //console.log(user);
+        console.log(user);
       })
-
+    // console.log(scrollRef);
   }, [])
   useEffect(() => {
     scrollRef.current.scrollTo(0, 0)
