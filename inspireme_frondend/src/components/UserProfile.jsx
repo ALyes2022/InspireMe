@@ -23,7 +23,7 @@ const UserProfile = () => {
 
 
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { userId } = useParams();
 
   useEffect(() => {
@@ -77,11 +77,12 @@ const UserProfile = () => {
 
 
 
-  // const logout = () => {
-  //   localStorage.clear();
+  const logout = () => {
+    googleLogout();
+    setUser(null);
 
-  //   navigate('/login');
-  // }
+    navigate('/login');
+  }
 
 
   if (!user) {
@@ -108,29 +109,23 @@ const UserProfile = () => {
             <h1 className='font-bold text-3xl text-center mt-3'>
               {user.userName}
             </h1>
-            {/* <div className='absolute top-0 z-1 right-0 p-2'>
+            <div className='absolute top-0 z-1 right-0 p-2'>
               {userId === user._id && (
 
-                <GoogleLogout
-                  clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
-                  render={(renderProps) => (
-                    <button
-                      type='button'
-                      className='ng-white p-2 rounded-full cursor-pointer outline-none shadow-md'
-                      onClick={renderProps.onClick}
+                <button
+                  type='button'
+                  className='ng-white p-2 rounded-full cursor-pointer outline-none shadow-md'
+                  onClick={logout}
 
+                >
+                  <AiOutlineLogout color='red' fontize={21} />
 
-                    >
-                      <AiOutlineLogout color='red' fontize={21} />
-                      {console.log(renderProps)}
-                    </button>
-                  )}
+                </button>
 
-                  onLogoutSuccess={logout}
-                  cookiePolicy='single_host_origin'
+              )
 
-                />)}
-            </div> */}
+              }
+            </div>
           </div>
           <div className='text-center mb-7'>
             <button
